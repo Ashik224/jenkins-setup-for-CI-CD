@@ -16,6 +16,7 @@ pipeline {
 
         stage('Clone Cypress Repo') {
             steps {
+                    echo "WORKSPACE = ${env.WORKSPACE}"
                     bat """
                         if exist "%CYPRESS_DIR%" rmdir /S /Q "%CYPRESS_DIR%"
                         git clone %CYPRESS_REPO% %CYPRESS_DIR%
