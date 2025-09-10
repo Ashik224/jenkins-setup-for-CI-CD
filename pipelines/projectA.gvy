@@ -5,7 +5,7 @@ pipeline {
         IMAGE_NAME = "cypress-tests"
         CONTAINER_NAME = "cypress-runner"
         CYPRESS_REPO = "https://github.com/Ashik224/cypress-docker-setup.git"
-        CYPRESS_DIR = "/cypress-docker-setup"
+        CYPRESS_DIR = "cypress-docker-setup"
     }
     stages {
         stage('Checkout Jenkins Repo') {
