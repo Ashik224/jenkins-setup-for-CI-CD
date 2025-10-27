@@ -23,10 +23,19 @@ pipeline {
                     """
             }
         }
+
         stage('Build Docker Image') {
             steps {
                 dir('cypress-docker-setup') {
                      bat 'docker build -t my-cypress-image .'
+                }
+            }
+        }    
+
+        stage('Run Docker Image') {
+            steps {
+                dir('cypress-docker-setup') {
+                     bat 'docker run --rm my-cypress-image'
                 }
             }
         }        
