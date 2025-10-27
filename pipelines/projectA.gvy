@@ -23,11 +23,12 @@ pipeline {
                     """
             }
         }
-        stage('Test') {
-            steps {
-                echo 'Hello World'
-                println "This is a test stage"
-            }
-        }        
+        // stage('Build Docker Image') {
+        //     steps {
+        //         dir('cypress-docker-setup') {
+        //              bat 'docker build -t my-cypress-image .'
+        //         }
+        //     }
+        // }        
     }
 }
