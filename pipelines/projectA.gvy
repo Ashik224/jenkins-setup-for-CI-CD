@@ -53,7 +53,7 @@ pipeline {
                     allowMissing: false,
                     alwaysLinkToLastBuild: false,
                     keepAll: true,
-                    reportDir: 'cypress-docker-setup/cypress-reports/mochawesome',
+                    reportDir: 'cypress-docker-setup/cypress-reports/mochawesome/',
                     reportFiles: 'report.html',
                     reportName: 'Cypress Test Report'
                 ]               
