@@ -47,7 +47,7 @@ pipeline {
     post {
         always {
             echo 'Pipeline completed.'
-            archiveArtifacts artifacts: 'cypress-reports/**', allowEmptyArchive: true
+            archiveArtifacts artifacts: 'cypress-docker-setup/cypress-reports/**', allowEmptyArchive: true
         }
     }
 }
