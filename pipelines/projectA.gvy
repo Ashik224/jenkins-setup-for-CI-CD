@@ -36,7 +36,7 @@ pipeline {
             steps {
                 dir('cypress-docker-setup') {
                     // bat 'docker run --rm my-cypress-image'
-                    bat 'docker run --rm -v %CD%\\cypress-reports:/reports my-cypress-image'
+                    bat 'docker run --rm -v "%CD%\\cypress-reports:/reports" my-cypress-image'
 
 
                 }
