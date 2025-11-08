@@ -49,7 +49,7 @@ pipeline {
             // echo 'Pipeline completed.'
             // archiveArtifacts artifacts: 'cypress-docker-setup/cypress-reports/**', allowEmptyArchive: true
             publishHTML([
-                reportDir: 'cypress-docker-setup/cypress-reports',
+                reportDir: 'cypress-docker-setup/cypress-reports/mochawesome',
                 reportFiles: 'report.html',
                 reportName: 'Cypress Test Report'
             ])
