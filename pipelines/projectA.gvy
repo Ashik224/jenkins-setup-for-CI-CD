@@ -38,7 +38,7 @@ pipeline {
                     // bat 'docker run --rm my-cypress-image'
                     bat ''' 
                         if not exist "%CD%\\cypress-reports" mkdir "%CD%\\cypress-reports"
-                        'docker run --rm -v "%CD%\\cypress-reports:/reports" my-cypress-image'
+                        docker run --rm -v "%CD%\\cypress-reports:/reports" my-cypress-image
                     '''
                 }
             }
