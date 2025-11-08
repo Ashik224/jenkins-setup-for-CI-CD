@@ -41,13 +41,12 @@ pipeline {
 
                 }
             }
-        } 
-
-        post {
-            always {
-                echo 'Pipeline completed.'
-                archiveArtifacts artifacts: 'cypress-reports/**', allowEmptyArchive: true
-            }
+        }        
+    }
+    post {
+        always {
+            echo 'Pipeline completed.'
+            archiveArtifacts artifacts: 'cypress-reports/**', allowEmptyArchive: true
         }
     }
 }
