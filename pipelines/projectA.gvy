@@ -38,7 +38,7 @@ pipeline {
                     // bat 'docker run --rm my-cypress-image'
                     bat ''' 
                         if not exist "%CD%\\cypress-reports" mkdir "%CD%\\cypress-reports"
-                        docker run --rm -v "%CD%\\cypress-reports:/cypress/reports" my-cypress-image
+                        docker run --rm -v "%CD%\\cypress-reports:/docker-container-setup/cypress/reports" my-cypress-image
                     '''
                 }
             }
@@ -47,7 +47,7 @@ pipeline {
     post {
         always {
             echo 'Pipeline completed.'
-            archiveArtifacts artifacts: 'cypress-docker-setup/cypress-reports/**', allowEmptyArchive: true
+            archiveArtifacts artifacts: 'cypress-reports/**', allowEmptyArchive: true
         }
     }
 }
