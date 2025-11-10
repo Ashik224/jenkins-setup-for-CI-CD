@@ -12,5 +12,6 @@ This project is ideal for practising pipelines, containerised automation and Dev
   cd jenkins-setup-for-CI-CD
   ```
 - Launch Jenkins (locally or in Docker) and create a new pipeline job pointing to this repo
+- If jenkins is run locally, ensure the docker engine is running
 - Run the pipeline
 - View build history, logs and results in Jenkins UI
