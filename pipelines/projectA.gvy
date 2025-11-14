@@ -52,7 +52,7 @@ pipeline {
                     allowMissing: false,
                     alwaysLinkToLastBuild: false,
                     keepAll: true,
-                    reportDir: 'cypress-dashboard/',
+                    reportDir: 'cypress-docker-setup/cypress-dashboard/',
                     reportFiles: 'dashboard.html',
                     reportName: 'Cypress Test Report'
                 ]               
