@@ -53,7 +53,7 @@ pipeline {
                     alwaysLinkToLastBuild: false,
                     keepAll: true,
                     reportDir: 'cypress-docker-setup/cypress-dashboard/',
-                    reportFiles: 'dashboard.html',
+                    reportFiles: 'dummy.html',
                     reportName: 'Cypress-Test-Report'
                 ]               
             )
