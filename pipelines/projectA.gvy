@@ -54,7 +54,7 @@ pipeline {
                     keepAll: true,
                     reportDir: 'cypress-docker-setup/cypress-dashboard/',
                     reportFiles: 'dashboard.html',
-                    reportName: 'Cypress Test Report'
+                    reportName: 'Cypress-Test-Report'
                 ]               
             )
         }
