@@ -38,7 +38,8 @@ pipeline {
                     // bat 'docker run --rm my-cypress-image'
                     bat ''' 
                         if not exist "%CD%\\cypress-reports" mkdir "%CD%\\cypress-reports"
-                        docker run --rm -v "%CD%\\cypress-reports:/docker-container-setup/cypress/reports" my-cypress-image
+                        if not exist "%CD%\\cypress-dashboard" mkdir "%CD%\\cypress-dashboard"
+                        docker run --rm -v "%CD%\\cypress-reports:/docker-container-setup/cypress/reports" -v "%CD%\\cypress-dashboard:/docker-container-setup/cypress/dashboard" my-cypress-image
                     '''
                 }
             }
@@ -46,15 +47,13 @@ pipeline {
     }
     post {
         always {
-            // echo 'Pipeline completed.'
-            // archiveArtifacts artifacts: 'cypress-docker-setup/cypress-reports/**', allowEmptyArchive: true
             publishHTML(
                 target: [
                     allowMissing: false,
                     alwaysLinkToLastBuild: false,
                     keepAll: true,
-                    reportDir: 'cypress-docker-setup/cypress-reports/mochawesome/',
-                    reportFiles: 'report.html',
+                    reportDir: 'cypress-docker-setup/cypress-dashboard/',
+                    reportFiles: 'dashboard.html',
                     reportName: 'Cypress Test Report'
                 ]               
             )
