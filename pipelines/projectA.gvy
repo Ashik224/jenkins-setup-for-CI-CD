@@ -37,7 +37,7 @@ pipeline {
         //         dir('cypress-docker-setup') {
         //              bat """
         //                 if not exist "%CD%\\cypress-dashboard" mkdir "%CD%\\cypress-dashboard"
-        //                 xcopy /E /I /Y "%CD%\\cypress\\dashboard\\*" "%CD%\\cypress-dashboard\\"
+        //                 xcopy /E /I /Y "%CD%\\cypress\\reports\\dashboard\\*" "%CD%\\cypress-reports\\"
         //              """
         //         }
         //     }
@@ -50,23 +50,25 @@ pipeline {
                     bat ''' 
                         if not exist "%CD%\\cypress-reports" mkdir "%CD%\\cypress-reports"
                         docker run --rm  -v "%CD%\\cypress-reports:/docker-container-setup/cypress/reports" my-cypress-image
+                        xcopy /E /I /Y "%CD%\\cypress\\reports\\dashboard\\*" "%CD%\\cypress-reports\\"
                     '''
                 }
             }
         }        
     }
-    // post {
-    //     always {
-    //         publishHTML(
-    //             target: [
-    //                 allowMissing: false,
-    //                 alwaysLinkToLastBuild: false,
-    //                 keepAll: true,
-    //                 reportDir: 'cypress-docker-setup/cypress-dashboard/',
-    //                 reportFiles: 'dummy.html',
-    //                 reportName: 'Cypress-Test-Report'
-    //             ]               
-    //         )
-    //     }
-    // }
+
+    post {
+        always {
+            publishHTML(
+                target: [
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: false,
+                    keepAll: true,
+                    reportDir: 'cypress-docker-setup/cypress-reports/',
+                    reportFiles: 'dashboard.html',
+                    reportName: 'Cypress Test Report'
+                ]               
+            )
+        }
+    }
 }
