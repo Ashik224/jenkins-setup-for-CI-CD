@@ -50,7 +50,7 @@ pipeline {
                     bat ''' 
                         if not exist "%CD%\\cypress-reports" mkdir "%CD%\\cypress-reports"
                         docker run --rm  -v "%CD%\\cypress-reports:/docker-container-setup/cypress/reports" my-cypress-image
-                        xcopy /E /I /Y "%CD%\\cypress\\reports\\dashboard\\*" "%CD%\\cypress-reports\\"
+                        copy  "%CD%\\cypress\\reports\\dashboard.html" "%CD%\\cypress-reports\\dashboard.html" /Y
                     '''
                 }
             }
