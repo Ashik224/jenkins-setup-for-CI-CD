@@ -24,26 +24,37 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+        // stage('Build Docker Image') {
+        //     steps {
+        //         dir('cypress-docker-setup') {
+        //              bat 'docker build -t my-cypress-image .'
+        //         }
+        //     }
+        // }    
+        
+        stage('Copy Dashboard') {
             steps {
                 dir('cypress-docker-setup') {
-                     bat 'docker build -t my-cypress-image .'
+                     bat """
+                        if not exist "%CD%\\cypress-dashboard" mkdir "%CD%\\cypress-dashboard"
+                        xcopy /E /I /Y "%CD%\\cypress\\dashboard\\*" "%CD%\\cypress-dashboard\\"
+                     """
                 }
             }
         }    
 
-        stage('Run Docker Image') {
-            steps {
-                dir('cypress-docker-setup') {
-                    // bat 'docker run --rm my-cypress-image'
-                    bat ''' 
-                        if not exist "%CD%\\cypress-reports" mkdir "%CD%\\cypress-reports"
-                        if not exist "%CD%\\cypress-dashboard" mkdir "%CD%\\cypress-dashboard"
-                        docker run --rm -v "%CD%\\cypress-dashboard:/docker-container-setup/cypress/dashboard" my-cypress-image
-                    '''
-                }
-            }
-        }        
+        // stage('Run Docker Image') {
+        //     steps {
+        //         dir('cypress-docker-setup') {
+        //             // bat 'docker run --rm my-cypress-image'
+        //             bat ''' 
+        //                 if not exist "%CD%\\cypress-reports" mkdir "%CD%\\cypress-reports"
+        //                 if not exist "%CD%\\cypress-dashboard" mkdir "%CD%\\cypress-dashboard"
+        //                 docker run --rm -v "%CD%\\cypress-dashboard:/docker-container-setup/cypress/dashboard" my-cypress-image
+        //             '''
+        //         }
+        //     }
+        // }        
     }
     // post {
     //     always {
