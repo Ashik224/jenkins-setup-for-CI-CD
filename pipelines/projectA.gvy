@@ -66,7 +66,18 @@ pipeline {
                     keepAll: true,
                     reportDir: 'cypress-docker-setup/cypress-reports/',
                     reportFiles: 'dashboard.html',
-                    reportName: 'Cypress Test Report'
+                    reportName: 'Report Summary'
+                ]               
+            )
+
+            publishHTML(
+                target: [
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: false,
+                    keepAll: true,
+                    reportDir: 'cypress-docker-setup/cypress-reports/mochawesome',
+                    reportFiles: 'report.html',
+                    reportName: 'Test Report'
                 ]               
             )
         }
