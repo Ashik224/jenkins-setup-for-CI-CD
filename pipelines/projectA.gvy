@@ -24,37 +24,36 @@ pipeline {
             }
         }
 
-        // stage('Build Docker Image') {
-        //     steps {
-        //         dir('cypress-docker-setup') {
-        //              bat 'docker build -t my-cypress-image .'
-        //         }
-        //     }
-        // }    
-        
-        stage('Copy Dashboard') {
+        stage('Build Docker Image') {
             steps {
                 dir('cypress-docker-setup') {
-                     bat """
-                        if not exist "%CD%\\cypress-dashboard" mkdir "%CD%\\cypress-dashboard"
-                        xcopy /E /I /Y "%CD%\\cypress\\dashboard\\*" "%CD%\\cypress-dashboard\\"
-                     """
+                     bat 'docker build -t my-cypress-image .'
                 }
             }
         }    
-
-        // stage('Run Docker Image') {
+        
+        // stage('Copy Dashboard') {
         //     steps {
         //         dir('cypress-docker-setup') {
-        //             // bat 'docker run --rm my-cypress-image'
-        //             bat ''' 
-        //                 if not exist "%CD%\\cypress-reports" mkdir "%CD%\\cypress-reports"
+        //              bat """
         //                 if not exist "%CD%\\cypress-dashboard" mkdir "%CD%\\cypress-dashboard"
-        //                 docker run --rm -v "%CD%\\cypress-dashboard:/docker-container-setup/cypress/dashboard" my-cypress-image
-        //             '''
+        //                 xcopy /E /I /Y "%CD%\\cypress\\dashboard\\*" "%CD%\\cypress-dashboard\\"
+        //              """
         //         }
         //     }
-        // }        
+        // }    
+
+        stage('Run Docker Image') {
+            steps {
+                dir('cypress-docker-setup') {
+                    // bat 'docker run --rm my-cypress-image'
+                    bat ''' 
+                        if not exist "%CD%\\cypress-reports" mkdir "%CD%\\cypress-reports"
+                        docker run --rm  -v "%CD%\\cypress-reports:/docker-container-setup/cypress/reports" my-cypress-image
+                    '''
+                }
+            }
+        }        
     }
     // post {
     //     always {
